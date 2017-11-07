@@ -1,0 +1,5 @@
+select
+IIf(存货编码 like '927*','包装材料','NULL')as 货品属性,* from 存货档案9月新增
+where 存货编码 like '927*'
+
+2

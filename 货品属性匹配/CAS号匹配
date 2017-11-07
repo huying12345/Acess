@@ -1,0 +1,11 @@
+select
+IIf(CAS号 in(select CAS from 货品属性匹配2 where 货品属性='双氧水'),'双氧水',
+IIf(CAS号 in (select CAS from 货品属性匹配2 where 货品属性='盐酸、硫酸'),'盐酸、硫酸',
+IIf(CAS号 in (select CAS from 货品属性匹配2 where 货品属性='硝酸'),'硝酸',
+IIf(CAS号 in (select CAS from 货品属性匹配2 where 货品属性='贵金属'),'贵金属',
+IIf(CAS号 in (select CAS from 货品属性匹配2 where 货品属性='手工'),'手工','NULL')))))as 货品属性,* into CAS号匹配 from 存货档案9月新增
+where ID not in(select ID from 包装材料)
+and ID not in(select ID from 新分类编码厂牌匹配)
+and CAS号 in(select CAS from 货品属性匹配2)
+
+4

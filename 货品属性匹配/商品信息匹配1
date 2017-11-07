@@ -1,0 +1,59 @@
+select
+IIf((存货名称 like '*盐酸溶液*'
+or 存货名称 like '*Hydrochloric acid solution*'
+or 存货名称 like '*硫酸溶液*'
+or 存货名称 like '*Sulfuric acid solution*'
+and 存货名称 not like '*HACH硫酸溶液*')
+or (英文名称 like '*盐酸溶液*'
+or 英文名称 like '*Hydrochloric acid solution*'
+or 英文名称 like '*硫酸溶液*'
+or 英文名称 like '*Sulfuric acid solution*'
+and 英文名称 not like '*HACH硫酸溶液*')
+or (规格型号 like '*盐酸溶液*'
+or 规格型号 like '*Hydrochloric acid solution*'
+or 规格型号 like '*硫酸溶液*'
+or 规格型号 like '*Sulfuric acid solution*'
+and 规格型号 not like '*HACH硫酸溶液*')
+or (CAS索引 like '*盐酸溶液*'
+or CAS索引 like '*Hydrochloric acid solution*'
+or CAS索引 like '*硫酸溶液*'
+or CAS索引 like '*Sulfuric acid solution*'
+and CAS索引 not like '*HACH硫酸溶液*'),'盐酸、硫酸','NULL')as 货品属性,* into 商品信息匹配1 from 存货档案9月新增
+where ID not in(select ID from 包装材料)
+and ID not in(select ID from 新分类编码厂牌匹配)
+and ID not in(select ID from CAS号匹配)
+and ((存货名称 like '*盐酸溶液*'
+or 存货名称 like '*Hydrochloric acid solution*'
+or 存货名称 like '*硫酸溶液*'
+or 存货名称 like '*Sulfuric acid solution*'
+and 存货名称 not like '*HACH硫酸溶液*')
+or (英文名称 like '*盐酸溶液*'
+or 英文名称 like '*Hydrochloric acid solution*'
+or 英文名称 like '*硫酸溶液*'
+or 英文名称 like '*Sulfuric acid solution*'
+and 英文名称 not like '*HACH硫酸溶液*')
+or (规格型号 like '*盐酸溶液*'
+or 规格型号 like '*Hydrochloric acid solution*'
+or 规格型号 like '*硫酸溶液*'
+or 规格型号 like '*Sulfuric acid solution*'
+and 规格型号 not like '*HACH硫酸溶液*')
+or (CAS索引 like '*盐酸溶液*'
+or CAS索引 like '*Hydrochloric acid solution*'
+or CAS索引 like '*硫酸溶液*'
+or CAS索引 like '*Sulfuric acid solution*'
+and CAS索引 not like '*HACH硫酸溶液*'))
+
+0
+
+
+
+
+
+
+
+
+
+
+
+
+

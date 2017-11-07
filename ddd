@@ -1,0 +1,27 @@
+select
+IIf(
+英文名称 like '*Synthetic resin*' or 规格型号 like '*Synthetic resin*','手工检索',
+IIf (
+英文名称 like '*Calconcarboxylic acid sodium salt*' or 规格型号 like '*Calconcarboxylic acid sodium salt*','手工检索',
+IIf(
+存货名称 like '*合成树脂*' or 规格型号 like '*合成树脂*','手工检索',
+IIf(
+存货名称 like '*钙羧酸钠盐*' or 规格型号 like '*钙羧酸钠盐*','手工检索','NA'))))as CAS索引号,* into ddd from noNA
+where
+ID not in (select ID from aaa)
+and ID not in (select ID from bbb)
+and ID not in (select ID from eee)
+and 存货名称 like '*合成树脂*'
+or 存货名称 like '*钙羧酸钠盐*'
+and 规格型号 like '*合成树脂*'
+or 规格型号 like '*钙羧酸钠盐*'
+or 规格型号 like '*Synthetic resin*'
+or 规格型号 like '*Calconcarboxylic acid sodium salt*'
+or 英文名称 like '*Synthetic resin*'
+or 英文名称 like '*Calconcarboxylic acid sodium salt*'
+and 存货名称 not in (select 存货名称 from aaa)
+and 存货名称 not in (select 存货名称 from bbb)
+and 规格型号 not in (select 规格型号 from aaa)
+and 规格型号 not in (select 规格型号 from bbb)
+
+0

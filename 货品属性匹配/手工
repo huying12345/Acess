@@ -1,0 +1,19 @@
+select
+IIf(ID not in(select ID from 包装材料)
+and ID not in(select ID from 新分类编码厂牌匹配)
+and ID not in(select ID from CAS号匹配)
+and ID not in(select ID from 商品信息匹配1)
+and ID not in(select ID from 商品信息匹配2)
+and ID not in(select ID from 危险性质匹配1)
+and ID not in(select ID from 危险性质匹配2)
+and ID not in(select ID from 危险性质匹配3),'手工','NULL')as 货品属性,* into 手工 from 存货档案9月新增
+where ID not in(select ID from 包装材料)
+and ID not in(select ID from 新分类编码厂牌匹配)
+and ID not in(select ID from CAS号匹配)
+and ID not in(select ID from 商品信息匹配1)
+and ID not in(select ID from 商品信息匹配2)
+and ID not in(select ID from 危险性质匹配1)
+and ID not in(select ID from 危险性质匹配2)
+and ID not in(select ID from 危险性质匹配3)
+
+271

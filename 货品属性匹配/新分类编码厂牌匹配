@@ -1,0 +1,10 @@
+select
+IIf(新分类编码 in (select 新分类编码 from 货品属性匹配1) and 厂牌 = 'HACH','非危险品',
+IIf(新分类编码 in (select 新分类编码 from 货品属性匹配1) and 厂牌 <>'HACH','玻璃','NULL'))
+as 货品属性,* into 新分类编码厂牌匹配 from 存货档案9月新增
+where
+ID not in(select ID from 包装材料)
+and 新分类编码 in (select 新分类编码 from 货品属性匹配1)
+
+
+1003

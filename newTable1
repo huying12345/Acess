@@ -1,0 +1,41 @@
+SELECT * into newtable1
+FROM (
+SELECT * FROM HACH
+union
+SELECT * FROM ggg
+union
+SELECT * FROM aaa
+union
+SELECT * FROM bbb
+union
+SELECT * FROM ccc1
+union
+SELECT * FROM ccc2
+union
+SELECT * FROM ddd1
+union
+SELECT * FROM ddd2
+union
+SELECT * FROM eee
+union
+select * from 甲酸
+union
+SELECT * FROM fff
+union
+SELECT * FROM hhh
+union
+SELECT * FROM iii
+)
+ORDER BY ID;
+
+----根据CAS索引号匹配管制品，危险性质，UN
+UPDATE newTable1
+INNER JOIN Sheet1
+ON newTable1.CAS索引号=Sheet1.CAS索引
+SET newTable1.管制品 = Sheet1.国家管控,
+newTable1.危险性质 = Sheet1.危险性类别,
+newTable1.UN = Sheet1.UN№;
+
+---插入数据
+insert into newTable1([管制品],[UN],[危险性质])
+select 国家管控,UN№,危险性类别 from Sheet1

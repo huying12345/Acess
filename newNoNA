@@ -1,0 +1,17 @@
+SELECT *
+FROM (
+SELECT * FROM aaa
+union
+SELECT * FROM bbb
+union
+SELECT * FROM ddd
+union
+SELECT * FROM ddd1
+union
+SELECT * FROM ddd2
+union
+SELECT * FROM eee
+union
+select * from ¼×Ëá
+)
+ORDER BY ´æ»õÃû³Æ;

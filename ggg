@@ -1,0 +1,7 @@
+SELECT
+IIf(
+CAS号 is null or CAS号='null','手工确认','NULL') as CAS索引号 ,* into ggg from 空
+where 
+CAS号 is null or CAS号='null'
+
+169

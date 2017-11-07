@@ -1,0 +1,72 @@
+select
+IIf(
+(存货名称 like '*合成树脂*'
+or 存货名称 like '*钙羧酸钠盐*'
+or (存货名称 like '*溶液*'
+and 存货名称 not like '*甲醇溶液*'
+and 存货名称 not like '*乙醇溶液*'
+and 存货名称 not like '*丙酮溶液*'
+and 存货名称 not like '*甲苯溶液*'
+and 存货名称 not like '*四氯化碳溶液*'
+and 存货名称 not like '*乙醚溶液*'
+and 存货名称 not like '*乙酸溶液*'
+and 存货名称 not like '*硫酸溶液*'
+and 存货名称 not like '*硝酸溶液*'
+and 存货名称 not like '*盐酸溶液*'
+and 存货名称 not like '*乙腈溶液*')
+or 规格型号 like '*合成树脂*'
+or 规格型号 like '*钙羧酸钠盐*')
+or (规格型号 like '*溶液*'
+and 规格型号 not like '*甲醇溶液*'
+and 规格型号 not like '*乙醇溶液*'
+and 规格型号 not like '*丙酮溶液*'
+and 规格型号 not like '*甲苯溶液*'
+and 规格型号 not like '*四氯化碳溶液*'
+and 规格型号 not like '*乙醚溶液*'
+and 规格型号 not like '*乙酸溶液*'
+and 规格型号 not like '*硫酸溶液*'
+and 规格型号 not like '*硝酸溶液*'
+and 规格型号 not like '*盐酸溶液*'
+and 规格型号 not like '*乙腈溶液*'),
+'手工检索','NA') as CAS索引号,* into hhh from NA
+where
+ID not in(select ID from ccc1)
+and ID not in(select ID from ccc2)
+and ID not in(select ID from fff)
+and (存货名称  not in(select 存货名称 from ccc1)
+and 存货名称  not in(select 存货名称 from ccc2)
+and 存货名称  not in(select 存货名称 from fff)
+and 规格型号  not in(select 规格型号 from ccc1)
+and 规格型号  not in(select 规格型号 from ccc2)
+and 规格型号  not in(select 规格型号 from fff)
+and 存货名称 like '*合成树脂*'
+or 存货名称 like '*钙羧酸钠盐*'
+or (存货名称 like '*溶液*'
+and 存货名称 not like '*甲醇溶液*'
+and 存货名称 not like '*乙醇溶液*'
+and 存货名称 not like '*丙酮溶液*'
+and 存货名称 not like '*甲苯溶液*'
+and 存货名称 not like '*四氯化碳溶液*'
+and 存货名称 not like '*乙醚溶液*'
+and 存货名称 not like '*乙酸溶液*'
+and 存货名称 not like '*硫酸溶液*'
+and 存货名称 not like '*硝酸溶液*'
+and 存货名称 not like '*盐酸溶液*'
+and 存货名称 not like '*乙腈溶液*')
+or 规格型号 like '*合成树脂*'
+or 规格型号 like '*钙羧酸钠盐*')
+or (规格型号 like '*溶液*'
+and 规格型号 not like '*甲醇溶液*'
+and 规格型号 not like '*乙醇溶液*'
+and 规格型号 not like '*丙酮溶液*'
+and 规格型号 not like '*甲苯溶液*'
+and 规格型号 not like '*四氯化碳溶液*'
+and 规格型号 not like '*乙醚溶液*'
+and 规格型号 not like '*乙酸溶液*'
+and 规格型号 not like '*硫酸溶液*'
+and 规格型号 not like '*硝酸溶液*'
+and 规格型号 not like '*盐酸溶液*'
+and 规格型号 not like '*乙腈溶液*')
+
+
+26

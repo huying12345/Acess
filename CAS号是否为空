@@ -1,0 +1,5 @@
+//CASºÅÎª¿Õ
+select * into ¿Õ from noHACH where CASºÅ is null or CASºÅ='null' ----169
+
+//CASºÅ²»Îª¿Õ
+select * into no¿Õ from  noHACH where CASºÅ is not null and CASºÅ <> 'null'   ------1951

@@ -1,0 +1,13 @@
+SELECT *
+FROM (
+SELECT * FROM ccc1
+union
+SELECT * FROM ccc2
+union
+SELECT * FROM fff
+union
+SELECT * FROM hhh
+union
+SELECT * FROM iii
+)
+ORDER BY ´æ»õÃû³Æ;
