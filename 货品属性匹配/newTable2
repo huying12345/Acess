@@ -17,7 +17,7 @@ select *  from 新分类编码厂牌匹配
 union
 select * from 手工
 )
-
+order by ID
 
 select * from 存货档案9月新增
 where

@@ -1,7 +1,7 @@
 select
-IIf(危险性质 in ('非危险品','其它杂项危险品') and (储存条件 in (select 储存条件 from 储存条件 where 货品属性='非危险品')),'非危险品',
-IIf(危险性质 in ('非危险品','其它杂项危险品') and (储存条件 in (select 储存条件 from 储存条件 where 货品属性='冷藏品')),'冷藏品',
-IIf(危险性质 in ('非危险品','其它杂项危险品') and (储存条件 in (select 储存条件 from 储存条件 where 货品属性='冷冻品')),'冷冻品',
+IIf(危险性质 in ('非危险品','其它杂项危险品') and (储存条件 in (select 储存条件 from 储存条件 where 货品属性1='非危险品')),'非危险品',
+IIf(危险性质 in ('非危险品','其它杂项危险品') and (储存条件 in (select 储存条件 from 储存条件 where 货品属性1='冷藏品')),'冷藏品',
+IIf(危险性质 in ('非危险品','其它杂项危险品') and (储存条件 in (select 储存条件 from 储存条件 where 货品属性1='冷冻品')),'冷冻品',
 IIf(危险性质 in ('非危险品','其它杂项危险品') and (储存条件 not in (select 储存条件 from 储存条件)),'手工','NULL'))))
 as 货品属性,*  into 危险性质匹配2 from 存货档案9月新增
 where  ID not in(select ID from 包装材料)
