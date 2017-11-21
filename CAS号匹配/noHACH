@@ -1,0 +1,6 @@
+SELECT * from 存货档案9月新增
+where
+规格型号 not like '*HACH*' and 厂牌 not like '*HACH*'
+
+2120
+

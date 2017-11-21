@@ -1,0 +1,356 @@
+select a as 货品属性,* into newTable from (
+select
+IIf(存货编码 like '927*','包装材料','NULL')as a,* from Sheet1
+where 存货编码 like '927*'
+union
+(select
+IIf(新分类编码 in (select 新分类编码 from 货品属性匹配1) and 厂牌 = 'HACH'
+and 储存条件 in(select 储存条件 from 储存条件 where 货品属性1='非危险品'),'非危险品',
+IIf(新分类编码 in (select 新分类编码 from 货品属性匹配1) and 厂牌 = 'HACH'
+and 储存条件 in(select 储存条件 from 储存条件 where 货品属性1='冷藏品'),'冷藏品',
+IIf(新分类编码 in (select 新分类编码 from 货品属性匹配1) and 厂牌 = 'HACH'
+and 储存条件 in(select 储存条件 from 储存条件 where 货品属性1='冷藏品'),'冷藏品',
+IIf(新分类编码 in (select 新分类编码 from 货品属性匹配1) and 厂牌 = 'HACH'
+and 储存条件 in(select 储存条件 from 储存条件 where 货品属性1='冷冻品'),'冷冻品',
+IIf(新分类编码 in (select 新分类编码 from 货品属性匹配1) and 厂牌 <>'HACH'
+and 储存条件 in(select 储存条件 from 储存条件 where 货品属性2='玻璃'),'玻璃',
+IIf(新分类编码 in (select 新分类编码 from 货品属性匹配1) and 厂牌 <>'HACH'
+and 储存条件 in(select 储存条件 from 储存条件 where 货品属性2='冷藏品'),'冷藏品',
+IIf(新分类编码 in (select 新分类编码 from 货品属性匹配1) and 厂牌 <>'HACH'
+and 储存条件 in(select 储存条件 from 储存条件 where 货品属性2='冷冻品'),'冷冻品','NULL')))))))
+as a,*  from Sheet1
+where ID not in(select ID from Sheet1 where 存货编码 like '927*')
+and 新分类编码 in (select 新分类编码 from 货品属性匹配1)
+and 储存条件 in(select 储存条件 from 储存条件))
+union
+(select
+IIf(CAS号 in(select CAS from 货品属性匹配2 where 货品属性='双氧水'),'双氧水',
+IIf(CAS号 in (select CAS from 货品属性匹配2 where 货品属性='盐酸、硫酸'),'盐酸、硫酸',
+IIf(CAS号 in (select CAS from 货品属性匹配2 where 货品属性='硝酸'),'硝酸',
+IIf(CAS号 in (select CAS from 货品属性匹配2 where 货品属性='贵金属'),'贵金属',
+IIf(CAS号 in (select CAS from 货品属性匹配2 where 货品属性='手工'),'手工','NULL')))))as a,* from Sheet1
+where ID not in(select ID from Sheet1 where 存货编码 like '927*')
+and ID not in(select ID from Sheet1 where 新分类编码 in (select 新分类编码 from 货品属性匹配1)
+and 储存条件 in(select 储存条件 from 储存条件))
+and CAS号 in(select CAS from 货品属性匹配2))
+union
+(select
+IIf((存货名称 like '*盐酸溶液*'
+or 存货名称 like '*Hydrochloric acid solution*'
+or 存货名称 like '*硫酸溶液*'
+or 存货名称 like '*Sulfuric acid solution*'
+and 存货名称 not like '*HACH硫酸溶液*')
+or (英文名称 like '*盐酸溶液*'
+or 英文名称 like '*Hydrochloric acid solution*'
+or 英文名称 like '*硫酸溶液*'
+or 英文名称 like '*Sulfuric acid solution*'
+and 英文名称 not like '*HACH硫酸溶液*')
+or (规格型号 like '*盐酸溶液*'
+or 规格型号 like '*Hydrochloric acid solution*'
+or 规格型号 like '*硫酸溶液*'
+or 规格型号 like '*Sulfuric acid solution*'
+and 规格型号 not like '*HACH硫酸溶液*')
+or (CAS索引 like '*盐酸溶液*'
+or CAS索引 like '*Hydrochloric acid solution*'
+or CAS索引 like '*硫酸溶液*'
+or CAS索引 like '*Sulfuric acid solution*'
+and CAS索引 not like '*HACH硫酸溶液*'),'盐酸、硫酸','NULL')as a,*  from Sheet1
+where ID not in(select ID from Sheet1 where 存货编码 like '927*')
+and ID not in(select ID from Sheet1 where 新分类编码 in (select 新分类编码 from 货品属性匹配1)
+and 储存条件 in(select 储存条件 from 储存条件))
+and ID not in(select ID from Sheet1 where CAS号 in(select CAS from 货品属性匹配2))
+and ((存货名称 like '*盐酸溶液*'
+or 存货名称 like '*Hydrochloric acid solution*'
+or 存货名称 like '*硫酸溶液*'
+or 存货名称 like '*Sulfuric acid solution*'
+and 存货名称 not like '*HACH硫酸溶液*')
+or (英文名称 like '*盐酸溶液*'
+or 英文名称 like '*Hydrochloric acid solution*'
+or 英文名称 like '*硫酸溶液*'
+or 英文名称 like '*Sulfuric acid solution*'
+and 英文名称 not like '*HACH硫酸溶液*')
+or (规格型号 like '*盐酸溶液*'
+or 规格型号 like '*Hydrochloric acid solution*'
+or 规格型号 like '*硫酸溶液*'
+or 规格型号 like '*Sulfuric acid solution*'
+and 规格型号 not like '*HACH硫酸溶液*')
+or (CAS索引 like '*盐酸溶液*'
+or CAS索引 like '*Hydrochloric acid solution*'
+or CAS索引 like '*硫酸溶液*'
+or CAS索引 like '*Sulfuric acid solution*'
+and CAS索引 not like '*HACH硫酸溶液*')))
+union
+(select
+IIf(存货名称 like '*硝酸溶液*'
+or 存货名称 like '*nitric acid solution*'
+or 存货名称 like '*salpeter solution*'
+or 英文名称 like '*硝酸溶液*'
+or 英文名称 like '*nitric acid solution*'
+or 英文名称 like '*salpeter solution*'
+or 规格型号 like '*硝酸溶液*'
+or 规格型号 like '*nitric acid solution*'
+or 规格型号 like '*salpeter solution*'
+or CAS索引 like '*硝酸溶液*'
+or CAS索引 like '*nitric acid solution*'
+or CAS索引 like '*salpeter solution*','硝酸','NULL')as a,* from Sheet1
+where ID not in(select ID from Sheet1 where 存货编码 like '927*')
+and ID not in(select ID from Sheet1 where 新分类编码 in (select 新分类编码 from 货品属性匹配1)
+and 储存条件 in(select 储存条件 from 储存条件))
+and ID not in(select ID from Sheet1 where CAS号 in(select CAS from 货品属性匹配2))
+and ID not in(select ID from Sheet1 where ((存货名称 like '*盐酸溶液*'
+or 存货名称 like '*Hydrochloric acid solution*'
+or 存货名称 like '*硫酸溶液*'
+or 存货名称 like '*Sulfuric acid solution*'
+and 存货名称 not like '*HACH硫酸溶液*')
+or (英文名称 like '*盐酸溶液*'
+or 英文名称 like '*Hydrochloric acid solution*'
+or 英文名称 like '*硫酸溶液*'
+or 英文名称 like '*Sulfuric acid solution*'
+and 英文名称 not like '*HACH硫酸溶液*')
+or (规格型号 like '*盐酸溶液*'
+or 规格型号 like '*Hydrochloric acid solution*'
+or 规格型号 like '*硫酸溶液*'
+or 规格型号 like '*Sulfuric acid solution*'
+and 规格型号 not like '*HACH硫酸溶液*')
+or (CAS索引 like '*盐酸溶液*'
+or CAS索引 like '*Hydrochloric acid solution*'
+or CAS索引 like '*硫酸溶液*'
+or CAS索引 like '*Sulfuric acid solution*'
+and CAS索引 not like '*HACH硫酸溶液*')))
+and 存货名称 like '*硝酸溶液*'
+or 存货名称 like '*nitric acid solution*'
+or 存货名称 like '*salpeter solution*'
+or 英文名称 like '*硝酸溶液*'
+or 英文名称 like '*nitric acid solution*'
+or 英文名称 like '*salpeter solution*'
+or 规格型号 like '*硝酸溶液*'
+or 规格型号 like '*nitric acid solution*'
+or 规格型号 like '*salpeter solution*'
+or CAS索引 like '*硝酸溶液*'
+or CAS索引 like '*nitric acid solution*'
+or CAS索引 like '*salpeter solution*')
+union
+(select
+IIf(危险性质 in(select 危险性质 from 易燃大包装)
+and 主计量单位名称 in(select 计量单位名称 from 大包装单位),'易燃品（大包装）','NULL')as a,* from Sheet1
+where ID not in(select ID from Sheet1 where 存货编码 like '927*')
+and ID not in(select ID from Sheet1 where 新分类编码 in (select 新分类编码 from 货品属性匹配1)
+and 储存条件 in(select 储存条件 from 储存条件))
+and ID not in(select ID from Sheet1 where CAS号 in(select CAS from 货品属性匹配2))
+and ID not in(select ID from Sheet1 where ((存货名称 like '*盐酸溶液*'
+or 存货名称 like '*Hydrochloric acid solution*'
+or 存货名称 like '*硫酸溶液*'
+or 存货名称 like '*Sulfuric acid solution*'
+and 存货名称 not like '*HACH硫酸溶液*')
+or (英文名称 like '*盐酸溶液*'
+or 英文名称 like '*Hydrochloric acid solution*'
+or 英文名称 like '*硫酸溶液*'
+or 英文名称 like '*Sulfuric acid solution*'
+and 英文名称 not like '*HACH硫酸溶液*')
+or (规格型号 like '*盐酸溶液*'
+or 规格型号 like '*Hydrochloric acid solution*'
+or 规格型号 like '*硫酸溶液*'
+or 规格型号 like '*Sulfuric acid solution*'
+and 规格型号 not like '*HACH硫酸溶液*')
+or (CAS索引 like '*盐酸溶液*'
+or CAS索引 like '*Hydrochloric acid solution*'
+or CAS索引 like '*硫酸溶液*'
+or CAS索引 like '*Sulfuric acid solution*'
+and CAS索引 not like '*HACH硫酸溶液*')))
+and ID not in(select ID from Sheet1 where (存货名称 like '*硝酸溶液*'
+or 存货名称 like '*nitric acid solution*'
+or 存货名称 like '*salpeter solution*'
+or 英文名称 like '*硝酸溶液*'
+or 英文名称 like '*nitric acid solution*'
+or 英文名称 like '*salpeter solution*'
+or 规格型号 like '*硝酸溶液*'
+or 规格型号 like '*nitric acid solution*'
+or 规格型号 like '*salpeter solution*'
+or CAS索引 like '*硝酸溶液*'
+or CAS索引 like '*nitric acid solution*'
+or CAS索引 like '*salpeter solution*'))
+and (危险性质 in(select 危险性质 from 易燃大包装)
+and 主计量单位名称 in(select 计量单位名称 from 大包装单位)))
+union
+(select
+IIf(危险性质 in ('非危险品','其它杂项危险品') and (储存条件 in (select 储存条件 from 储存条件 where 货品属性1='非危险品')),'非危险品',
+IIf(危险性质 in ('非危险品','其它杂项危险品') and (储存条件 in (select 储存条件 from 储存条件 where 货品属性1='冷藏品')),'冷藏品',
+IIf(危险性质 in ('非危险品','其它杂项危险品') and (储存条件 in (select 储存条件 from 储存条件 where 货品属性1='冷冻品')),'冷冻品',
+IIf(危险性质 in ('非危险品','其它杂项危险品') and (储存条件 not in (select 储存条件 from 储存条件)),'手工','NULL'))))
+as a,*  from Sheet1
+where  ID not in(select ID from Sheet1 where 存货编码 like '927*')
+and ID not in(select ID from Sheet1 where 新分类编码 in (select 新分类编码 from 货品属性匹配1)
+and 储存条件 in(select 储存条件 from 储存条件))
+and ID not in(select ID from Sheet1 where CAS号 in(select CAS from 货品属性匹配2))
+and ID not in(select ID from Sheet1 where ((存货名称 like '*盐酸溶液*'
+or 存货名称 like '*Hydrochloric acid solution*'
+or 存货名称 like '*硫酸溶液*'
+or 存货名称 like '*Sulfuric acid solution*'
+and 存货名称 not like '*HACH硫酸溶液*')
+or (英文名称 like '*盐酸溶液*'
+or 英文名称 like '*Hydrochloric acid solution*'
+or 英文名称 like '*硫酸溶液*'
+or 英文名称 like '*Sulfuric acid solution*'
+and 英文名称 not like '*HACH硫酸溶液*')
+or (规格型号 like '*盐酸溶液*'
+or 规格型号 like '*Hydrochloric acid solution*'
+or 规格型号 like '*硫酸溶液*'
+or 规格型号 like '*Sulfuric acid solution*'
+and 规格型号 not like '*HACH硫酸溶液*')
+or (CAS索引 like '*盐酸溶液*'
+or CAS索引 like '*Hydrochloric acid solution*'
+or CAS索引 like '*硫酸溶液*'
+or CAS索引 like '*Sulfuric acid solution*'
+and CAS索引 not like '*HACH硫酸溶液*')))
+and ID not in(select ID from Sheet1 where (存货名称 like '*硝酸溶液*'
+or 存货名称 like '*nitric acid solution*'
+or 存货名称 like '*salpeter solution*'
+or 英文名称 like '*硝酸溶液*'
+or 英文名称 like '*nitric acid solution*'
+or 英文名称 like '*salpeter solution*'
+or 规格型号 like '*硝酸溶液*'
+or 规格型号 like '*nitric acid solution*'
+or 规格型号 like '*salpeter solution*'
+or CAS索引 like '*硝酸溶液*'
+or CAS索引 like '*nitric acid solution*'
+or CAS索引 like '*salpeter solution*'))
+and ID not in(select ID from Sheet1 where (危险性质 in(select 危险性质 from 易燃大包装)
+and 主计量单位名称 in(select 计量单位名称 from 大包装单位)))
+and 危险性质 in ('非危险品','其它杂项危险品'))
+union
+(select
+ IIf(危险性质 in (select 危险性质 from 货品属性匹配4 where 货品属性='手工'),'手工',
+ IIf(危险性质 in (select 危险性质 from 货品属性匹配4 where 货品属性='无经营许可'),'无经营许可',
+ IIf(危险性质 in (select 危险性质 from 货品属性匹配4 where 货品属性='剧毒品'),'剧毒品',
+ IIf(危险性质 in (select 危险性质 from 货品属性匹配4 where 货品属性='易燃固体、自燃'),'易燃固体、自燃',
+ IIf(危险性质 in (select 危险性质 from 货品属性匹配4 where 货品属性='有机过氧化物'),'有机过氧化物',
+ IIf(危险性质 in (select 危险性质 from 货品属性匹配4 where 货品属性='毒害品'),'毒害品',
+ IIf(危险性质 in (select 危险性质 from 货品属性匹配4 where 货品属性='氧化剂'),'氧化剂',
+ IIf(危险性质 in (select 危险性质 from 货品属性匹配4 where 货品属性='碱性腐蚀品'),'碱性腐蚀品',
+ IIf(危险性质 in (select 危险性质 from 货品属性匹配4 where 货品属性='遇湿燃烧'),'遇湿燃烧',
+ IIf(危险性质 in (select 危险性质 from 货品属性匹配4 where 货品属性='酸性腐蚀品'),'酸性腐蚀品',
+ IIf(危险性质 in (select 危险性质 from 货品属性匹配4 where 货品属性='非危险品'),'非危险品',
+ IIf(危险性质 in (select 危险性质 from 货品属性匹配4 where 货品属性='易燃液体、腐蚀品'),'易燃液体、腐蚀品','NULL'))))))))))))
+ as a,*  from Sheet1
+ where ID not in(select ID from Sheet1 where 存货编码 like '927*')
+and ID not in(select ID from Sheet1 where 新分类编码 in (select 新分类编码 from 货品属性匹配1)
+and 储存条件 in(select 储存条件 from 储存条件))
+and ID not in(select ID from Sheet1 where CAS号 in(select CAS from 货品属性匹配2))
+and ID not in(select ID from Sheet1 where ((存货名称 like '*盐酸溶液*'
+or 存货名称 like '*Hydrochloric acid solution*'
+or 存货名称 like '*硫酸溶液*'
+or 存货名称 like '*Sulfuric acid solution*'
+and 存货名称 not like '*HACH硫酸溶液*')
+or (英文名称 like '*盐酸溶液*'
+or 英文名称 like '*Hydrochloric acid solution*'
+or 英文名称 like '*硫酸溶液*'
+or 英文名称 like '*Sulfuric acid solution*'
+and 英文名称 not like '*HACH硫酸溶液*')
+or (规格型号 like '*盐酸溶液*'
+or 规格型号 like '*Hydrochloric acid solution*'
+or 规格型号 like '*硫酸溶液*'
+or 规格型号 like '*Sulfuric acid solution*'
+and 规格型号 not like '*HACH硫酸溶液*')
+or (CAS索引 like '*盐酸溶液*'
+or CAS索引 like '*Hydrochloric acid solution*'
+or CAS索引 like '*硫酸溶液*'
+or CAS索引 like '*Sulfuric acid solution*'
+and CAS索引 not like '*HACH硫酸溶液*')))
+and ID not in(select ID from Sheet1 where (存货名称 like '*硝酸溶液*'
+or 存货名称 like '*nitric acid solution*'
+or 存货名称 like '*salpeter solution*'
+or 英文名称 like '*硝酸溶液*'
+or 英文名称 like '*nitric acid solution*'
+or 英文名称 like '*salpeter solution*'
+or 规格型号 like '*硝酸溶液*'
+or 规格型号 like '*nitric acid solution*'
+or 规格型号 like '*salpeter solution*'
+or CAS索引 like '*硝酸溶液*'
+or CAS索引 like '*nitric acid solution*'
+or CAS索引 like '*salpeter solution*'))
+and ID not in(select ID from Sheet1 where (危险性质 in(select 危险性质 from 易燃大包装)
+and 主计量单位名称 in(select 计量单位名称 from 大包装单位)))
+and ID not in(select ID from Sheet1 where 危险性质 in ('非危险品','其它杂项危险品'))
+and 危险性质 in(select 危险性质 from 货品属性匹配4))
+union
+(select
+IIf(ID not in(select ID from Sheet1 where 存货编码 like '927*')
+and ID not in(select ID from Sheet1 where 新分类编码 in (select 新分类编码 from 货品属性匹配1)
+and 储存条件 in(select 储存条件 from 储存条件))
+and ID not in(select ID from Sheet1 where CAS号 in(select CAS from 货品属性匹配2))
+and ID not in(select ID from Sheet1 where ((存货名称 like '*盐酸溶液*'
+or 存货名称 like '*Hydrochloric acid solution*'
+or 存货名称 like '*硫酸溶液*'
+or 存货名称 like '*Sulfuric acid solution*'
+and 存货名称 not like '*HACH硫酸溶液*')
+or (英文名称 like '*盐酸溶液*'
+or 英文名称 like '*Hydrochloric acid solution*'
+or 英文名称 like '*硫酸溶液*'
+or 英文名称 like '*Sulfuric acid solution*'
+and 英文名称 not like '*HACH硫酸溶液*')
+or (规格型号 like '*盐酸溶液*'
+or 规格型号 like '*Hydrochloric acid solution*'
+or 规格型号 like '*硫酸溶液*'
+or 规格型号 like '*Sulfuric acid solution*'
+and 规格型号 not like '*HACH硫酸溶液*')
+or (CAS索引 like '*盐酸溶液*'
+or CAS索引 like '*Hydrochloric acid solution*'
+or CAS索引 like '*硫酸溶液*'
+or CAS索引 like '*Sulfuric acid solution*'
+and CAS索引 not like '*HACH硫酸溶液*')))
+and ID not in(select ID from Sheet1 where (存货名称 like '*硝酸溶液*'
+or 存货名称 like '*nitric acid solution*'
+or 存货名称 like '*salpeter solution*'
+or 英文名称 like '*硝酸溶液*'
+or 英文名称 like '*nitric acid solution*'
+or 英文名称 like '*salpeter solution*'
+or 规格型号 like '*硝酸溶液*'
+or 规格型号 like '*nitric acid solution*'
+or 规格型号 like '*salpeter solution*'
+or CAS索引 like '*硝酸溶液*'
+or CAS索引 like '*nitric acid solution*'
+or CAS索引 like '*salpeter solution*'))
+and ID not in(select ID from Sheet1 where (危险性质 in(select 危险性质 from 易燃大包装)
+and 主计量单位名称 in(select 计量单位名称 from 大包装单位)))
+and ID not in(select ID from Sheet1 where 危险性质 in ('非危险品','其它杂项危险品'))
+and ID not in(select ID from Sheet1 where 危险性质 in(select 危险性质 from 货品属性匹配4)),'手工','NULL')as a,*
+from Sheet1 where (ID not in(select ID from Sheet1 where 存货编码 like '927*')
+and ID not in(select ID from Sheet1 where 新分类编码 in (select 新分类编码 from 货品属性匹配1)
+and 储存条件 in(select 储存条件 from 储存条件))
+and ID not in(select ID from Sheet1 where CAS号 in(select CAS from 货品属性匹配2))
+and ID not in(select ID from Sheet1 where ((存货名称 like '*盐酸溶液*'
+or 存货名称 like '*Hydrochloric acid solution*'
+or 存货名称 like '*硫酸溶液*'
+or 存货名称 like '*Sulfuric acid solution*'
+and 存货名称 not like '*HACH硫酸溶液*')
+or (英文名称 like '*盐酸溶液*'
+or 英文名称 like '*Hydrochloric acid solution*'
+or 英文名称 like '*硫酸溶液*'
+or 英文名称 like '*Sulfuric acid solution*'
+and 英文名称 not like '*HACH硫酸溶液*')
+or (规格型号 like '*盐酸溶液*'
+or 规格型号 like '*Hydrochloric acid solution*'
+or 规格型号 like '*硫酸溶液*'
+or 规格型号 like '*Sulfuric acid solution*'
+and 规格型号 not like '*HACH硫酸溶液*')
+or (CAS索引 like '*盐酸溶液*'
+or CAS索引 like '*Hydrochloric acid solution*'
+or CAS索引 like '*硫酸溶液*'
+or CAS索引 like '*Sulfuric acid solution*'
+and CAS索引 not like '*HACH硫酸溶液*')))
+and ID not in(select ID from Sheet1 where (存货名称 like '*硝酸溶液*'
+or 存货名称 like '*nitric acid solution*'
+or 存货名称 like '*salpeter solution*'
+or 英文名称 like '*硝酸溶液*'
+or 英文名称 like '*nitric acid solution*'
+or 英文名称 like '*salpeter solution*'
+or 规格型号 like '*硝酸溶液*'
+or 规格型号 like '*nitric acid solution*'
+or 规格型号 like '*salpeter solution*'
+or CAS索引 like '*硝酸溶液*'
+or CAS索引 like '*nitric acid solution*'
+or CAS索引 like '*salpeter solution*'))
+and ID not in(select ID from Sheet1 where (危险性质 in(select 危险性质 from 易燃大包装)
+and 主计量单位名称 in(select 计量单位名称 from 大包装单位)))
+and ID not in(select ID from Sheet1 where 危险性质 in ('非危险品','其它杂项危险品'))
+and ID not in(select ID from Sheet1 where 危险性质 in(select 危险性质 from 货品属性匹配4))))) order by ID

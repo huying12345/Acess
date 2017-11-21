@@ -1,0 +1,180 @@
+select * into tableCC from (
+select
+IIf(
+英文名称 like '*Synthetic resin*' or 规格型号 like '*Synthetic resin*','手工检索',
+IIf (
+英文名称 like '*Calconcarboxylic acid sodium salt*' or 规格型号 like '*Calconcarboxylic acid sodium salt*','手工检索',
+IIf(
+存货名称 like '*合成树脂*' or 规格型号 like '*合成树脂*','手工检索',
+IIf(
+存货名称 like '*钙羧酸钠盐*' or 规格型号 like '*钙羧酸钠盐*','手工检索','NULL'))))as a,* from Sheet1
+where
+ID not in (select ID from tableAA)
+and ID not in (select ID from tableBB)
+and CAS号 is not null and CAS号<>'NULL' and CAS号 <>'NA' and 厂牌 not like '*HACH*'  and 规格型号 not like '*HACH*'
+and 存货名称 like '*合成树脂*'
+or 存货名称 like '*钙羧酸钠盐*'
+and 规格型号 like '*合成树脂*'
+or 规格型号 like '*钙羧酸钠盐*'
+or 规格型号 like '*Synthetic resin*'
+or 规格型号 like '*Calconcarboxylic acid sodium salt*'
+or 英文名称 like '*Synthetic resin*'
+or 英文名称 like '*Calconcarboxylic acid sodium salt*'
+union
+(SELECT IIf(
+(规格型号 like '*溶液*'
+and 规格型号 not like '*水溶液*'
+and 规格型号 not like '*甲醇溶液*'
+and 规格型号 not like '*乙醇溶液*'
+and 规格型号 not like '*醇溶液*'
+and 规格型号 not like '*丙酮溶液*'
+and 规格型号 not like '*甲苯溶液*'
+and 规格型号 not like '*四氯化碳溶液*'
+and 规格型号 not like '*乙醚溶液*'
+and 规格型号 not like '*乙酸溶液*'
+and 规格型号 not like '*硫酸溶液*'
+and 规格型号 not like '*硝酸溶液*'
+and 规格型号 not like '*盐酸溶液*'
+and 规格型号 not like '*甲醛溶液*'
+and 规格型号 not like '*氯仿溶液*'
+and 规格型号 not like '*矿物油*')
+or(存货名称 like '*溶液*'
+and 存货名称 not like '*水溶液*'
+and 存货名称 not like '*甲醇溶液*'
+and 存货名称 not like '*乙醇溶液*'
+and 存货名称 not like '*醇溶液*'
+and 存货名称 not like '*丙酮溶液*'
+and 存货名称 not like '*甲苯溶液*'
+and 存货名称 not like '*四氯化碳溶液*'
+and 存货名称 not like '*乙醚溶液*'
+and 存货名称 not like '*乙酸溶液*'
+and 存货名称 not like '*硫酸溶液*'
+and 存货名称 not like '*硝酸溶液*'
+and 存货名称 not like '*盐酸溶液*'
+and 存货名称 not like '*甲醛溶液*'
+and 存货名称 not like '*氯仿溶液*'
+and 存货名称 not like '*矿物油*'),'手工检索','NULL') AS a, * FROM Sheet1
+WHERE (
+ID not in (select ID from tableAA)
+and ID not in (select ID from tableBB)
+and CAS号 is not null and CAS号<>'NULL' and CAS号 <>'NA'and 厂牌 not like '*HACH*'  and 规格型号 not like '*HACH*'
+and 存货名称 like '*溶液*'
+and 存货名称 not like '*水溶液*'
+and 存货名称 not like '*甲醇溶液*'
+and 存货名称 not like '*乙醇溶液*'
+and 存货名称 not like '*醇溶液*'
+and 存货名称 not like '*丙酮溶液*'
+and 存货名称 not like '*甲苯溶液*'
+and 存货名称 not like '*四氯化碳溶液*'
+and 存货名称 not like '*乙醚溶液*'
+and 存货名称 not like '*乙酸溶液*'
+and 存货名称 not like '*硫酸溶液*'
+and 存货名称 not like '*硝酸溶液*'
+and 存货名称 not like '*盐酸溶液*'
+and 存货名称 not like '*甲醛溶液*'
+and 存货名称 not like '*氯仿溶液*'
+and 存货名称 not like '*矿物油*')
+or(规格型号 like '*溶液*'
+and 规格型号 not like '*水溶液*'
+and 规格型号 not like '*甲醇溶液*'
+and 规格型号 not like '*乙醇溶液*'
+and 规格型号 not like '*醇溶液*'
+and 规格型号 not like '*丙酮溶液*'
+and 规格型号 not like '*甲苯溶液*'
+and 规格型号 not like '*四氯化碳溶液*'
+and 规格型号 not like '*乙醚溶液*'
+and 规格型号 not like '*乙酸溶液*'
+and 规格型号 not like '*硫酸溶液*'
+and 规格型号 not like '*硝酸溶液*'
+and 规格型号 not like '*盐酸溶液*'
+and 规格型号 not like '*甲醛溶液*'
+and 规格型号 not like '*氯仿溶液*'
+and 规格型号 not like '*矿物油*')
+)
+union
+(select
+IIf(
+(英文名称 like '*solution*'
+and 英文名称 not like '*aqueous solution*'
+and 英文名称 not like '*in Methanol*'
+and 英文名称 not like '*in Ethanol*'
+and 英文名称 not like '*in Alcohol*'
+and 英文名称 not like '*in Acetone*'
+and 英文名称 not like '*in Toluene*'
+and 英文名称 not like '*in Carbon tetrachloride*'
+and 英文名称 not like '*in Ether*'
+and 英文名称 not like '*in Acetic acid*'
+and 英文名称 not like '*in dilute Sulfuric acid*'
+and 英文名称 not like '*in Sulfuric acid*'
+and 英文名称 not like '*in dilute Nitric acid*'
+and 英文名称 not like '*in Nitric acid*'
+and 英文名称 not like '*in dilute hydrochloric acid*'
+and 英文名称 not like '*in Hydrochloric acid*'
+and 英文名称 not like '*in Formaldehyde*'
+and 英文名称 not like '*in Chloroform*'
+and 英文名称 not like '*in mineral oil*')
+or (规格型号 like '*solution*'
+and 规格型号 not like '*aqueous solution*'
+and 规格型号 not like '*in Methanol*'
+and 规格型号 not like '*in Ethanol*'
+and 规格型号 not like '*in Alcohol*'
+and 规格型号 not like '*in Toluene*'
+and 规格型号 not like '*in Carbon tetrachloride*'
+and 规格型号 not like '*in Ether*'
+and 规格型号 not like '*in Acetic acid*'
+and 规格型号 not like '*in dilute Sulfuric acid*'
+and 规格型号 not like '*in Sulfuric acid*'
+and 规格型号 not like '*in dilute Nitric acid*'
+and 规格型号 not like '*in Nitric acid*'
+and 规格型号 not like '*in dilute hydrochloric acid*'
+and 规格型号 not like '*in Hydrochloric acid*'
+and 规格型号 not like '*in Formaldehyde*'
+and 规格型号 not like '*in Chloroform*'
+and 规格型号 not like '*in mineral oil*'),'手工检索','NULL')as a,* from Sheet1
+where
+(ID not in (select ID from tableAA)
+and ID not in (select ID from tableBB)
+and CAS号 is not null and CAS号<>'NULL' and CAS号 <>'NA' and 厂牌 not like '*HACH*'  and 规格型号 not like '*HACH*'
+and 英文名称 like '*solution*'
+and 英文名称 not like '*aqueous solution*'
+and 英文名称 not like '*in Methanol*'
+and 英文名称 not like '*in Ethanol*'
+and 英文名称 not like '*in Alcohol*'
+and 英文名称 not like '*in Acetone*'
+and 英文名称 not like '*in Toluene*'
+and 英文名称 not like '*in Carbon tetrachloride*'
+and 英文名称 not like '*in Ether*'
+and 英文名称 not like '*in Acetic acid*'
+and 英文名称 not like '*in dilute Sulfuric acid*'
+and 英文名称 not like '*in Sulfuric acid*'
+and 英文名称 not like '*in dilute Nitric acid*'
+and 英文名称 not like '*in Nitric acid*'
+and 英文名称 not like '*in dilute hydrochloric acid*'
+and 英文名称 not like '*in Hydrochloric acid*'
+and 英文名称 not like '*in Formaldehyde*'
+and 英文名称 not like '*in Chloroform*'
+and 英文名称 not like '*in mineral oil*')
+or (规格型号 like '*solution*'
+and 规格型号 not like '*aqueous solution*'
+and 规格型号 not like '*in Methanol*'
+and 规格型号 not like '*in Ethanol*'
+and 规格型号 not like '*in Alcohol*'
+and 规格型号 not like '*in Toluene*'
+and 规格型号 not like '*in Carbon tetrachloride*'
+and 规格型号 not like '*in Ether*'
+and 规格型号 not like '*in Acetic acid*'
+and 规格型号 not like '*in dilute Sulfuric acid*'
+and 规格型号 not like '*in Sulfuric acid*'
+and 规格型号 not like '*in dilute Nitric acid*'
+and 规格型号 not like '*in Nitric acid*'
+and 规格型号 not like '*in dilute hydrochloric acid*'
+and 规格型号 not like '*in Hydrochloric acid*'
+and 规格型号 not like '*in Formaldehyde*'
+and 规格型号 not like '*in Chloroform*'
+and 规格型号 not like '*in mineral oil*')
+)
+)where ID not in (select ID from tableAA)
+and ID not in (select ID from tableBB)
+and CAS号 is not null and CAS号<>'NULL' and CAS号 <>'NA'and 厂牌 not like '*HACH*'  and 规格型号 not like '*HACH*'
+order by ID
+
