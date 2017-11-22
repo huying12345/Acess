@@ -1,0 +1,13 @@
+------------------------------------
+select * from (SELECT name, 部门
+from (SELECT name from 协议客户后台
+where name not like '*实习*'
+and name not like '*见习*'
+and name not like '*培训*'
+and name not like '*审核*'
+and name not like '*测试*'
+and name in(select 姓名 from 员工通讯录))  as table1
+left join 员工通讯录
+on table1.name=员工通讯录.姓名)
+where name not in(select 姓名 from 离职人员名单)
+and 部门 in('科研业务部','工业业务','制药业务部','渠道发展部','生命科学部','实验装备部','客户服务部','苏州公司') order by 部门 desc
