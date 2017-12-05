@@ -1,0 +1,14 @@
+select a as CASË÷ÒýºÅ,* from(
+SELECT * from tableAA
+union
+select * from tableBB
+union
+select * from tableCC
+union
+select * from tableDD
+union
+select * from tableEE
+union
+select * from tableFF
+)order by ID
+

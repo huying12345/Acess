@@ -1,8 +1,0 @@
-SELECT
-IIf(
-规格型号 like '*HACH*'or 厂牌 like '*HACH*','手工确认','NULL') as CAS索引号 ,* into HACH from 存货档案9月新增
-where
-规格型号 like '*HACH*'
-or 厂牌 like '*HACH*'
-
-42

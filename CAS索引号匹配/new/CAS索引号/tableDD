@@ -1,0 +1,48 @@
+select * into tableDD from(
+select
+IIf(存货名称 not like '*aqueous solution*'
+and 存货名称 not like '*in Methanol*'
+and  存货名称 not like '*in Ethanol*'
+and  存货名称 not like '*in Alcohol*'
+and  存货名称 not like '*in Acetone*'
+and 存货名称 not like '*in Toluene*'
+and  存货名称 not like '*in Carbon tetrachloride*'
+and  存货名称 not like '*in Ether*'
+and  存货名称 not like '*in Acetic acid*'
+and  存货名称 not like '*in dilute Sulfuric acid*'
+and  存货名称 not like '*in Sulfuric acid*'
+and  存货名称 not like '*in dilute Nitric acid*'
+and  存货名称 not like '*in Nitric acid*'
+and  存货名称 not like '*in dilute hydrochloric acid*'
+and  存货名称 not like '*in Hydrochloric acid*'
+and  存货名称 not like '*in Formaldehyde*'
+and  存货名称 not like '*in Chloroform*'
+and  存货名称 not like '*in mineral oil*'
+and  存货名称 not like '*Synthetic resin*'
+and  存货名称 not like '*Calconcarboxylic acid sodium salt*',CAS号,'NULL')as a,* from Sheet1
+where ID not in(select ID  from tableAA)
+and ID not in(select ID  from tableBB)
+and ID not in(select ID from tableCC)
+and CAS号 is not null and CAS号 <>'null' and CAS号<>'NA'
+and 厂牌 not like '*hach*' and 规格型号 not like '*hach*'
+and 存货名称 not like '*aqueous solution*'
+and 存货名称 not like '*in Methanol*'
+and  存货名称 not like '*in Ethanol*'
+and  存货名称 not like '*in Alcohol*'
+and  存货名称 not like '*in Acetone*'
+and 存货名称 not like '*in Toluene*'
+and  存货名称 not like '*in Carbon tetrachloride*'
+and  存货名称 not like '*in Ether*'
+and  存货名称 not like '*in Acetic acid*'
+and  存货名称 not like '*in dilute Sulfuric acid*'
+and  存货名称 not like '*in Sulfuric acid*'
+and  存货名称 not like '*in dilute Nitric acid*'
+and  存货名称 not like '*in Nitric acid*'
+and  存货名称 not like '*in dilute hydrochloric acid*'
+and  存货名称 not like '*in Hydrochloric acid*'
+and  存货名称 not like '*in Formaldehyde*'
+and  存货名称 not like '*in Chloroform*'
+and  存货名称 not like '*in mineral oil*'
+and  存货名称 not like '*Synthetic resin*'
+and  存货名称 not like '*Calconcarboxylic acid sodium salt*')
+
