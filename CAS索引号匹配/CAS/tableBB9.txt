@@ -1,0 +1,184 @@
+SELECT * INTO tableBB9
+FROM (SELECT 
+IIf(
+规格型号 like '*HACH*'
+or 厂牌 like '*HACH*' 
+or CAS号 is null 
+or CAS号='null','手工检索','NULL') as a ,* from child9 
+where 
+(规格型号 like '*HACH*' 
+or 厂牌 like '*HACH*' 
+or CAS号 is null or CAS号='null') 
+and ID not in(select ID from tableAA) 
+union
+(select
+IIf(存货名称 like '*甲苯和乙醇溶液*' or 存货名称 like '*甲苯+乙醇溶液*' or 存货名称 like '*四氢呋喃/甲苯溶液*' or 存货名称 like '*四氢呋喃和甲苯溶液*'
+or 存货名称 like '*四氢呋喃+甲苯溶液*' or 存货名称 like '*in Toluene and Ethanol*' or 存货名称 like '*in Toluene/Ethanol*'
+or 存货名称 like '*in THF and Toluene*' or 存货名称 like '*in THF/Toluene*' or 规格型号 like '*甲苯和乙醇溶液*' or 规格型号 like '*甲苯+乙醇溶液*'
+or 规格型号 like '*四氢呋喃/甲苯溶液*' or 规格型号 like '*四氢呋喃和甲苯溶液*' or 规格型号 like '*四氢呋喃+甲苯溶液*' or 规格型号 like '*in Toluene and Ethanol*'
+or 规格型号 like '*in Toluene/Ethanol*' or 规格型号 like '*in THF and Toluene*' or 规格型号 like '*in THF/Toluene*' or 英文名称 like '*in Toluene and Ethanol*'
+or 英文名称 like '*in Toluene/Ethanol*' or 英文名称 like '*in THF and Toluene*' or 英文名称 like '*in THF/Toluene*',CAS号&'[易燃溶剂溶液]',
+IIf(
+(存货名称 like '*水溶液*' or 规格型号 like '*水溶液*' or 存货名称 like '*in H2O*' or 存货名称 like '*aqueous solution*' or 规格型号 like '*in H2O*' or 规格型号 like '*aqueous solution*'
+or 英文名称 like '*aqueous solution*' or 英文名称 like '*in H2O*'),CAS号&'[水溶液]',
+IIf(
+(存货名称 like '*甲醇溶液*' or 规格型号 like '*甲醇溶液*' or 存货名称 like '*in Methanol*' or 规格型号 like '*in Methanol*' or 英文名称 like '*in Methanol*'),CAS号&'[甲醇溶液]',
+IIf(
+(存货名称 like'*丙酮溶液*' or 规格型号 like'*丙酮溶液*'or 存货名称 like '*in Acetone*'
+or 规格型号 like '*in Acetone*' or 英文名称 like '*in Acetone*') ,CAS号&'[丙酮溶液]',
+IIf(
+((存货名称 like'*甲苯溶液*' or 规格型号 like'*甲苯溶液*' or 存货名称 like '*in Toluene*' or 规格型号 like '*in Toluene*'
+or 英文名称 like '*in Toluene*') and 存货名称 not like '*甲苯和乙醇溶液*' and 存货名称 not like '*甲苯+乙醇溶液*'
+and 存货名称 not like '*四氢呋喃/甲苯溶液*' and 存货名称 not like '*四氢呋喃和甲苯溶液*' and 存货名称 not like '*四氢呋喃+甲苯溶液*'
+and 规格型号 not like '*四氢呋喃和甲苯溶液*' and 规格型号 not like '*四氢呋喃+甲苯溶液*' and 存货名称 not like '*in Toluene and Ethanol*'
+and 存货名称 not like '*in Toluene/Ethanol*' and 存货名称 not like '*in THF and Toluene*' and 存货名称 not like '*in THF/Toluene*'
+and 规格型号 not like '*in Toluene and Ethanol*' and 规格型号 not like '*in Toluene/Ethanol*' and 规格型号 not like '*in THF and Toluene*'
+and 规格型号 not like '*in THF/Toluene*' and 英文名称 not like '*in Toluene and Ethanol*' and 英文名称 not like '*in Toluene/Ethanol*'
+and 英文名称 not like '*in THF and Toluene*' and 英文名称 not like '*in THF/Toluene*'),CAS号&'[甲苯溶液]',
+IIf(
+(存货名称 like'*乙醚溶液*' or 规格型号 like'*乙醚溶液*' or 存货名称 like '*in Ether*'
+or 规格型号 like '*in Ether*' or 英文名称 like '*in Ether*'),CAS号&'[乙醚溶液]',
+IIf(
+存货名称 like'*乙酸溶液*' or 规格型号 like'*乙酸溶液*' or 存货名称 like '*in Acetic acid*'
+or 规格型号 like '*in Acetic acid*' or 英文名称 like '*in Acetic acid*',CAS号&'[乙酸溶液]',
+IIf(
+(存货名称 like'*稀硫酸溶液*' or 规格型号 like'*稀硫酸溶液*' or 存货名称 like '*in dilute Sulfuric acid*' or 规格型号 like '*in dilute Sulfuric acid*'
+or 英文名称 like '*in dilute Sulfuric acid*'),CAS号&'[稀硫酸溶液]',
+IIf(
+((存货名称 like'*硫酸溶液*' and 存货名称 not like '*稀硫酸溶液*') or (规格型号 like '*硫酸溶液*' and 规格型号 not like '*稀硫酸溶液*')
+or 存货名称 like '*in Sulfuric acid*' or 规格型号 like '*in Sulfuric acid*'
+or 英文名称 like '*in Sulfuric acid*'),CAS号&'[硫酸溶液]','NULL')))))))))as a, * from child9
+where  ID not in(select ID from tableAA)
+and CAS号 is not null and CAS号<>'NULL' and CAS号<>'NA'
+and 厂牌 not like 'HACH' and 规格型号 not like '*HACH*'
+and (存货名称 like '*甲苯和乙醇溶液*'
+or 存货名称 like '*甲苯+乙醇溶液*'
+or 存货名称 like '*四氢呋喃/甲苯溶液*'
+or 存货名称 like '*四氢呋喃和甲苯溶液*'
+or 存货名称 like '*四氢呋喃+甲苯溶液*'
+or 存货名称 like '*水溶液*'
+or 存货名称 like '*in H2O*'
+or 存货名称 like '*甲醇溶液*'
+or 存货名称 like '*丙酮溶液*'
+or 存货名称 like '*甲苯溶液*'
+or 存货名称 like '*乙醚溶液*'
+or 存货名称 like '*乙酸溶液*'
+or 存货名称 like '*硫酸溶液*'
+or 存货名称 like '*in Toluene and Ethanol*'
+or 存货名称 like '*in Toluene/Ethanol*'
+or 存货名称 like '*in THF and Toluene*'
+or 存货名称 like '*in THF/Toluene*'
+or 存货名称 like '*aqueous solution*'
+or 存货名称 like '*in Methanol*'
+or 存货名称 like '*in Acetone*'
+or 存货名称 like '*in Toluene*'
+or 存货名称 like '*in Ether*'
+or 存货名称 like '*in Acetic acid*'
+or 存货名称 like '*in dilute Sulfuric acid*'
+or 存货名称 like '*in Acetone*'
+or 存货名称 like '*in Sulfuric acid*'
+or 规格型号 like '*甲苯和乙醇溶液*'
+or 规格型号 like '*甲苯+乙醇溶液*'
+or 规格型号 like '*四氢呋喃/甲苯溶液*'
+or 规格型号 like '*四氢呋喃和甲苯溶液*'
+or 规格型号 like '*四氢呋喃+甲苯溶液*'
+or 规格型号 like '*水溶液*'
+or 规格型号 like '*in H2O*'
+or 规格型号 like '*甲醇溶液*'
+or 规格型号 like '*丙酮溶液*'
+or 规格型号 like '*甲苯溶液*'
+or 规格型号 like '*乙醚溶液*'
+or 规格型号 like '*乙酸溶液*'
+or 规格型号 like '*硫酸溶液*'
+or 规格型号 like '*in Toluene and Ethanol*'
+or 规格型号 like '*in Toluene/Ethanol*'
+or 规格型号 like '*in THF and Toluene*'
+or 规格型号 like '*in THF/Toluene*'
+or 规格型号 like '*aqueous solution*'
+or 规格型号 like '*in Methanol*'
+or 规格型号 like '*in Acetone*'
+or 规格型号 like '*in Toluene*'
+or 规格型号 like '*in Ether*'
+or 规格型号 like '*in Acetic acid*'
+or 规格型号 like '*in dilute Sulfuric acid*'
+or 规格型号 like '*in Acetone*'
+or 规格型号 like '*in Sulfuric acid*'
+or 英文名称 like '*in Toluene and Ethanol*'
+or 英文名称 like '*in Toluene/Ethanol*'
+or 英文名称 like '*in THF and Toluene*'
+or 英文名称 like '*in THF/Toluene*'
+or 英文名称 like '*aqueous solution*'
+or 英文名称 like '*in Methanol*'
+or 英文名称 like '*in Acetone*'
+or 英文名称 like '*in Toluene*'
+or 英文名称 like '*in Ether*'
+or 英文名称 like '*in Acetic acid*'
+or 英文名称 like '*in dilute Sulfuric acid*'
+or 英文名称 like '*in Acetone*'
+or 英文名称 like '*in Sulfuric acid*'))
+union
+(select IIf(存货名称 like '*稀硝酸溶液*' 
+or 规格型号 like '*稀硝酸溶液*' 
+or 存货名称 like '*in dilute Nitric acid*' 
+or 规格型号 like '*in dilute Nitric acid*' 
+or 英文名称 like '*in dilute Nitric acid*',CAS号&'[稀硝酸溶液]',
+IIf(
+((存货名称 like '*硝酸溶液*' 
+and 存货名称 not like '*稀硝酸溶液*') 
+or (规格型号 like '*硝酸溶液*' 
+and 规格型号 not like '*稀硝酸溶液*')
+or 存货名称 like '*in Nitric acid*' 
+or 规格型号 like '*in Nitric acid*' 
+or 英文名称 like '*in Nitric acid*'),CAS号&'[硝酸溶液]',
+IIf((存货名称 like '*稀盐酸溶液*' 
+or 规格型号 like '*稀盐酸溶液*' 
+or 存货名称 like '*in dilute hydrochloric acid*' 
+or 规格型号 like '*in dilute hydrochloric acid*' 
+or 英文名称 like '*in dilute hydrochloric acid*'),CAS号&'[稀盐酸溶液]',
+IIf(((存货名称 like '*盐酸溶液*' 
+and 存货名称 not like '*稀盐酸溶液*') 
+or (规格型号 like '*盐酸溶液*'
+and 规格型号 not like '*稀盐酸溶液*') 
+or 存货名称 like '*in Hydrochloric acid*' 
+or 规格型号 like '*in Hydrochloric acid*' 
+or 英文名称 like '*in Hydrochloric acid*'),CAS号&'[盐酸溶液]', 
+IIf((存货名称 like '*氯仿溶液*' 
+or 规格型号 like '*氯仿溶液*' 
+or 规格型号 like '*in Chloroform*' 
+or 存货名称 like '*in Chloroform*' 
+or 英文名称 like '*in Chloroform*'),CAS号&'[氯仿溶液]', 
+IIf((存货名称 like '*矿物油*' 
+or 规格型号 like '*矿物油*' 
+or 规格型号 like '*in mineral oil*' 
+or 存货名称 like '*in mineral oil*' 
+or 英文名称 like '*in mineral oil*'),CAS号&'[矿物油溶液]','NULL')))))) as a, * from child9
+where ID not in(select ID from tableAA) 
+and CAS号 is not null and CAS号<>'NULL' 
+and CAS号<>'NA' and 厂牌 not like 'HACH' 
+and 规格型号 not like '*HACH*' 
+and (存货名称 like '*硝酸溶液*' 
+or 存货名称 like '*盐酸溶液*' 
+or 存货名称 like '*氯仿溶液*' 
+or 存货名称 like '*矿物油*' 
+or 存货名称 like '*in dilute Nitric acid*' 
+or 存货名称 like '*in Nitric acid*' 
+or 存货名称 like '*in dilute hydrochloric acid*' 
+or 存货名称 like '*in Hydrochloric acid*' 
+or 存货名称 like '*in Chloroform*' 
+or 存货名称 like '*in mineral oil*' 
+or 规格型号 like '*硝酸溶液*' 
+or 规格型号 like '*盐酸溶液*' 
+or 规格型号 like '*氯仿溶液*' 
+or 规格型号 like '*矿物油*'
+or 规格型号 like '*in dilute Nitric acid*' 
+or 规格型号 like '*in Nitric acid*' 
+or 规格型号 like '*in dilute hydrochloric acid*' 
+or 规格型号 like '*in Hydrochloric acid*' 
+or 规格型号 like '*in Chloroform*' 
+or 规格型号 like '*in mineral oil*' 
+or 英文名称 like '*in dilute Nitric acid*' 
+or 英文名称 like '*in Nitric acid*' 
+or 英文名称 like '*in dilute hydrochloric acid*' 
+or 英文名称 like '*in Hydrochloric acid*' 
+or 英文名称 like '*in Chloroform*' or 英文名称 like '*in mineral oil*'))
+)  AS [%$##@_Alias];

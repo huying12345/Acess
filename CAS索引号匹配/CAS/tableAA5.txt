@@ -1,0 +1,12 @@
+select * into tableAA5 from(
+select 
+IIf(
+	CAS号 in(select CAS№ from Sheet2 where 分表 in('表1','表3')),'手工检索','NULL')as a,* from child5 
+where CAS号 in(select CAS№ from Sheet2 where 分表 in('表1','表3')) 
+union 
+(select 
+IIf(
+	CAS号 in(select CAS№ from Sheet2 where 分表='表2'),CAS号,'NULL')as a,* from child5 
+where CAS号 in(select CAS№ from Sheet2 where 分表='表2'))
+)
+    

@@ -1,0 +1,23 @@
+select * into tableGG from (
+	select * from tableGG1
+	union
+	select * from tableGG2
+	union
+	select * from tableGG3
+	union
+	select * from tableGG4
+	union
+	select * from tableGG5
+	union
+	select * from tableGG6
+	union
+	select * from tableGG7
+	union
+	select * from tableGG8
+	union
+	select * from tableGG9
+	union
+	select * from tableGG10
+)
+
+

@@ -1,0 +1,23 @@
+select * into tableDD from (
+	select * from tableDD1
+	union
+	select * from tableDD2
+	union
+	select * from tableDD3
+	union
+	select * from tableDD4
+	union
+	select * from tableDD5
+	union
+	select * from tableDD6
+	union
+	select * from tableDD7
+	union
+	select * from tableDD8
+	union
+	select * from tableDD9
+	union
+	select * from tableDD10
+)
+
+
