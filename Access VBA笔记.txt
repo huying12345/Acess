@@ -1,0 +1,50 @@
+//定义一段程序，名为HelloWorld1
+Sub HelloWorld1()
+    
+    Dim strSql As String //字符串类型
+    Dim tabName As String 
+    Dim Count As Long //长整型
+    Dim i As Integer //数值类型
+    Dim j As Integer
+    
+    MsgBox "------------程序执行开始------------" //提示语句
+
+    DoCmd.SetWarnings False  //不弹出提示框
+    
+    strSql = "select * into Sheet1 from Sheet"  //sql语句
+    DoCmd.RunSQL strSql //执行SQL语句
+    
+    strSql = "select * into child10 from Sheet1 where 1=0"
+    DoCmd.RunSQL strSql
+    
+    i = 0
+    Count = CurrentDb.TableDefs("Sheet1").RecordCount  //统计表数据条数
+    j = Count / 9
+     
+    Do While (Count > 0)
+        If (i < 10) Then
+            i = i + 1
+            Count = Count - j
+            tabName = "child" & i
+        End If
+       
+        strSql = "select top " & j & " * into " & tabName & " from Sheet1 order by ID"
+        DoCmd.RunSQL strSql
+        strSql = "delete from Sheet1 where ID in(select ID from " & tabName & ")"
+        DoCmd.RunSQL strSql
+        
+    Loop  
+        
+    If (Count <= 0) Then
+        strSql = "drop table Sheet1"
+        DoCmd.RunSQL strSql
+    End If
+    
+    DoCmd.SetWarnings True   //弹出提示框
+
+    MsgBox "--------------程序执行完毕，Sheet表数据已全部拆分！----------------"
+
+    DoCmd.OpenQuery "查询AA1"  //直接调用并执行数据库中的查询“查询AA”
+
+End Sub
+

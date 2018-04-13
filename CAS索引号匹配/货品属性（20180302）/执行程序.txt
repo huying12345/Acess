@@ -1,0 +1,43 @@
+Sub HelloWorld()
+    MsgBox "------程序执行开始，请耐心等候...-----"
+    DoCmd.SetWarnings False
+    Dim strSql As String
+    strSql = "delete * from Sheet1 where 存货名称 is null and 规格型号 is null and 英文名称 is null"
+    DoCmd.RunSQL strSql
+    
+    DoCmd.OpenQuery "tableAA查询"
+    DoCmd.OpenQuery "tableBB查询"
+    DoCmd.OpenQuery "tableCC查询"
+    DoCmd.OpenQuery "tableDD查询"
+    DoCmd.OpenQuery "tableEE查询"
+    DoCmd.OpenQuery "tableFF查询"
+    DoCmd.OpenQuery "tableGG查询"
+    DoCmd.OpenQuery "tableHH查询"
+    DoCmd.OpenQuery "tableII查询"
+    DoCmd.OpenQuery "查询结果"
+    DoCmd.OpenQuery "更新查询"
+    
+    strSql = "drop table tableAA"
+    DoCmd.RunSQL strSql
+    strSql = "drop table tableBB"
+    DoCmd.RunSQL strSql
+    strSql = "drop table tableCC"
+    DoCmd.RunSQL strSql
+    strSql = "drop table tableDD"
+    DoCmd.RunSQL strSql
+    strSql = "drop table tableEE"
+    DoCmd.RunSQL strSql
+    strSql = "drop table tableFF"
+    DoCmd.RunSQL strSql
+    strSql = "drop table tableGG"
+    DoCmd.RunSQL strSql
+    strSql = "drop table tableHH"
+    DoCmd.RunSQL strSql
+    strSql = "drop table tableII"
+    DoCmd.RunSQL strSql
+
+    DoCmd.SetWarnings True
+    MsgBox "-------程序执行完毕，请直接导出新表Sheet3--------"
+    
+End Sub
+

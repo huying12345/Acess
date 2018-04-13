@@ -1,0 +1,22 @@
+SELECT * INTO tableHH
+FROM (select
+ IIf(危险性质 in (select 危险性质 from 货品属性匹配4 where 货品属性='手工'),'手工',
+ IIf(危险性质 in (select 危险性质 from 货品属性匹配4 where 货品属性='无经营许可'),'无经营许可',
+ IIf(危险性质 in (select 危险性质 from 货品属性匹配4 where 货品属性='剧毒品'),'剧毒品',
+ IIf(危险性质 in (select 危险性质 from 货品属性匹配4 where 货品属性='易燃固体、自燃'),'易燃固体、自燃',
+ IIf(危险性质 in (select 危险性质 from 货品属性匹配4 where 货品属性='有机过氧化物'),'有机过氧化物',
+ IIf(危险性质 in (select 危险性质 from 货品属性匹配4 where 货品属性='毒害品'),'毒害品',
+ IIf(危险性质 in (select 危险性质 from 货品属性匹配4 where 货品属性='氧化剂'),'氧化剂',
+ IIf(危险性质 in (select 危险性质 from 货品属性匹配4 where 货品属性='碱性腐蚀品'),'碱性腐蚀品',
+ IIf(危险性质 in (select 危险性质 from 货品属性匹配4 where 货品属性='遇湿燃烧'),'遇湿燃烧',
+ IIf(危险性质 in (select 危险性质 from 货品属性匹配4 where 货品属性='酸性腐蚀品'),'酸性腐蚀品',
+ IIf(危险性质 in (select 危险性质 from 货品属性匹配4 where 货品属性='非危险品'),'非危险品',
+ IIf(危险性质 in (select 危险性质 from 货品属性匹配4 where 货品属性='易燃液体、腐蚀品'),'易燃液体、腐蚀品','手工')))))))))))) as a,*  from Sheet1
+where ID not in(select ID from tableAA)
+and ID not in(select ID from tableBB)
+and ID not in(select ID from tableCC)
+and ID not in(select ID from tableDD)
+and ID not in(select ID from tableEE)
+and ID not in(select ID from tableFF)
+and ID not in(select ID from tableGG)
+and 危险性质 in(select 危险性质 from 货品属性匹配4)) ORDER BY ID;

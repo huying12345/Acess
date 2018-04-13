@@ -1,0 +1,11 @@
+SELECT Sheet2.国家管控 AS 管制品,Sheet2.危险性类别 AS 危险性质,Sheet2.UN№ AS UN,newTable.* INTO Sheet3
+FROM (SELECT a AS CAS索引, * FROM (
+	select * from tableAA 
+	union select * from tableBB 
+	union select * from tableCC 
+	union select * from tableDD 
+	union select * from tableEE 
+	union select * from tableFF 
+	union select * from tableGG))  AS newTable 
+	LEFT JOIN Sheet2 ON newTable.CAS索引=Sheet2.CAS索引
+ORDER BY newTable.ID;

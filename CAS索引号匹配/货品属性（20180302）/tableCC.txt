@@ -1,0 +1,10 @@
+SELECT * INTO tableCC
+FROM (select
+IIf(CAS号 in (select CAS from 货品属性匹配2 where 货品属性='双氧水'),'双氧水',
+IIf(CAS号 in (select CAS from 货品属性匹配2 where 货品属性='盐酸、硫酸'),'盐酸、硫酸',
+IIf(CAS号 in (select CAS from 货品属性匹配2 where 货品属性='硝酸'),'硝酸',
+IIf(CAS号 in (select CAS from 货品属性匹配2 where 货品属性='贵金属'),'贵金属',
+IIf(CAS号 in (select CAS from 货品属性匹配2 where 货品属性='手工'),'手工','手工')))))as a,* from Sheet1
+where ID not in(select ID from tableAA)
+and ID not in(select ID from tableBB)
+and CAS号 in(select CAS from 货品属性匹配2)) ORDER BY ID;

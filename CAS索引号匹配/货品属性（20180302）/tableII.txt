@@ -1,0 +1,18 @@
+SELECT * INTO tableII 
+FROM (select
+IIf(ID not in(select ID from tableAA)
+and ID not in(select ID from tableBB)
+and ID not in(select ID from tableCC)
+and ID not in(select ID from tableDD)
+and ID not in(select ID from tableEE)
+and ID not in(select ID from tableFF)
+and ID not in(select ID from tableGG)
+and ID not in(select ID from tableHH),"手工","手工")as a,* from Sheet1
+where ID not in(select ID from tableAA)
+and ID not in(select ID from tableBB)
+and ID not in(select ID from tableCC)
+and ID not in(select ID from tableDD)
+and ID not in(select ID from tableEE)
+and ID not in(select ID from tableFF)
+and ID not in(select ID from tableGG)
+and ID not in(select ID from tableHH)) order by ID

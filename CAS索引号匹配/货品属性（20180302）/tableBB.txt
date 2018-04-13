@@ -1,0 +1,20 @@
+SELECT * INTO tableBB
+FROM (select
+IIf(新分类编码 in (select 新分类编码 from 货品属性匹配1) and 厂牌 = 'HACH'
+and 储存条件 in(select 储存条件 from 储存条件 where 货品属性1='非危险品'),'非危险品',
+IIf(新分类编码 in (select 新分类编码 from 货品属性匹配1) and 厂牌 = 'HACH'
+and 储存条件 in(select 储存条件 from 储存条件 where 货品属性1='冷藏品'),'冷藏品',
+IIf(新分类编码 in (select 新分类编码 from 货品属性匹配1) and 厂牌 = 'HACH'
+and 储存条件 in(select 储存条件 from 储存条件 where 货品属性1='冷藏品'),'冷藏品',
+IIf(新分类编码 in (select 新分类编码 from 货品属性匹配1) and 厂牌 = 'HACH'
+and 储存条件 in(select 储存条件 from 储存条件 where 货品属性1='冷冻品'),'冷冻品',
+IIf(新分类编码 in (select 新分类编码 from 货品属性匹配1) and 厂牌 <>'HACH'
+and 储存条件 in(select 储存条件 from 储存条件 where 货品属性2='玻璃'),'玻璃',
+IIf(新分类编码 in (select 新分类编码 from 货品属性匹配1) and 厂牌 <>'HACH'
+and 储存条件 in(select 储存条件 from 储存条件 where 货品属性2='冷藏品'),'冷藏品',
+IIf(新分类编码 in (select 新分类编码 from 货品属性匹配1) and 厂牌 <>'HACH'
+and 储存条件 in(select 储存条件 from 储存条件 where 货品属性2='冷冻品'),'冷冻品','手工')))))))as a,*  from Sheet1
+where ID not in(select ID from tableAA)
+and 新分类编码 in (select 新分类编码 from 货品属性匹配1)
+and 储存条件 in(select 储存条件 from 储存条件)) 
+ORDER BY ID;

@@ -1,0 +1,11 @@
+SELECT * INTO tableFF
+FROM (select
+IIf(危险性质 in(select 危险性质 from 易燃大包装)
+and 主计量单位 in(select 计量单位名称 from 大包装单位),'易燃品（大包装）','手工')as a,* from Sheet1
+where ID not in(select ID from tableAA)
+and ID not in(select ID from tableBB)
+and ID not in(select ID from tableCC)
+and ID not in(select ID from tableDD)
+and ID not in(select ID from tableEE)
+and 危险性质 in(select 危险性质 from 易燃大包装)
+and 主计量单位 in(select 计量单位名称 from 大包装单位)) ORDER BY ID;

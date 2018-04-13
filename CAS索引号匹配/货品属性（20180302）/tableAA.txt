@@ -1,0 +1,4 @@
+SELECT * INTO tableAA
+FROM (select
+IIf(存货编码 like '927*','包装材料','手工')as a,* from Sheet1
+where 存货编码 like '927*') ORDER BY ID;

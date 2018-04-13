@@ -1,0 +1,23 @@
+select * into tableEE from (
+	select * from tableEE1
+	union
+	select * from tableEE2
+	union
+	select * from tableEE3
+	union
+	select * from tableEE4
+	union
+	select * from tableEE5
+	union
+	select * from tableEE6
+	union
+	select * from tableEE7
+	union
+	select * from tableEE8
+	union
+	select * from tableEE9
+	union
+	select * from tableEE10
+)
+
+

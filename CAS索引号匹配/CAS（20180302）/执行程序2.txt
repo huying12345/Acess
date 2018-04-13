@@ -1,0 +1,283 @@
+Sub HelloWorld2()
+	MsgBox "------程序执行开始，请耐心等候...-----"
+	DoCmd.SetWarnings False
+	
+    Dim strSql As String
+    Dim i As Integer
+	
+    DoCmd.OpenQuery "查询AA1"
+    DoCmd.OpenQuery "查询AA2"
+    DoCmd.OpenQuery "查询AA3"
+    DoCmd.OpenQuery "查询AA4"
+    DoCmd.OpenQuery "查询AA5"
+    DoCmd.OpenQuery "查询AA6"
+    DoCmd.OpenQuery "查询AA7"
+    DoCmd.OpenQuery "查询AA8"
+    DoCmd.OpenQuery "查询AA9"
+    DoCmd.OpenQuery "查询AA10"
+    DoCmd.OpenQuery "查询AA"  
+    
+    strSql="drop table tableAA1"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableAA2"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableAA3"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableAA4"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableAA5"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableAA6"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableAA7"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableAA8"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableAA9"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableAA10"
+    DoCmd.RunSQL strSql
+       
+    DoCmd.OpenQuery "查询BB1"
+    DoCmd.OpenQuery "查询BB2"
+    DoCmd.OpenQuery "查询BB3"
+    DoCmd.OpenQuery "查询BB4"
+    DoCmd.OpenQuery "查询BB5"
+    DoCmd.OpenQuery "查询BB6"
+    DoCmd.OpenQuery "查询BB7"
+    DoCmd.OpenQuery "查询BB8"
+    DoCmd.OpenQuery "查询BB9"
+    DoCmd.OpenQuery "查询BB10"
+    DoCmd.OpenQuery "查询BB"
+    
+    strSql="drop table tableBB1"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableBB2"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableBB3"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableBB4"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableBB5"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableBB6"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableBB7"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableBB8"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableBB9"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableBB10"
+    DoCmd.RunSQL strSql
+    
+    DoCmd.OpenQuery "查询CC1"
+    DoCmd.OpenQuery "查询CC2"
+    DoCmd.OpenQuery "查询CC3"
+    DoCmd.OpenQuery "查询CC4"
+    DoCmd.OpenQuery "查询CC5"
+    DoCmd.OpenQuery "查询CC6"
+    DoCmd.OpenQuery "查询CC7"
+    DoCmd.OpenQuery "查询CC8"
+    DoCmd.OpenQuery "查询CC9"
+    DoCmd.OpenQuery "查询CC10"
+    DoCmd.OpenQuery "查询CC"
+    
+    strSql="drop table tableCC1"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableCC2"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableCC3"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableCC4"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableCC5"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableCC6"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableCC7"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableCC8"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableCC9"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableCC10"
+    DoCmd.RunSQL strSql
+    
+    DoCmd.OpenQuery "查询DD1"
+    DoCmd.OpenQuery "查询DD2"
+    DoCmd.OpenQuery "查询DD3"
+    DoCmd.OpenQuery "查询DD4"
+    DoCmd.OpenQuery "查询DD5"
+    DoCmd.OpenQuery "查询DD6"
+    DoCmd.OpenQuery "查询DD7"
+    DoCmd.OpenQuery "查询DD8"
+    DoCmd.OpenQuery "查询DD9"
+    DoCmd.OpenQuery "查询DD10"
+    DoCmd.OpenQuery "查询DD"
+    
+    strSql="drop table tableDD1"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableDD2"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableDD3"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableDD4"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableDD5"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableDD6"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableDD7"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableDD8"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableDD9"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableDD10"
+    DoCmd.RunSQL strSql
+    
+    DoCmd.OpenQuery "查询EE1"
+    DoCmd.OpenQuery "查询EE2"
+    DoCmd.OpenQuery "查询EE3"
+    DoCmd.OpenQuery "查询EE4"
+    DoCmd.OpenQuery "查询EE5"
+    DoCmd.OpenQuery "查询EE6"
+    DoCmd.OpenQuery "查询EE7"
+    DoCmd.OpenQuery "查询EE8"
+    DoCmd.OpenQuery "查询EE9"
+    DoCmd.OpenQuery "查询EE10"
+    DoCmd.OpenQuery "查询EE"
+    
+    strSql="drop table tableEE1"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableEE2"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableEE3"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableEE4"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableEE5"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableEE6"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableEE7"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableEE8"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableEE9"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableEE10"
+    DoCmd.RunSQL strSql
+    
+    DoCmd.OpenQuery "查询FF1"
+    DoCmd.OpenQuery "查询FF2"
+    DoCmd.OpenQuery "查询FF3"
+    DoCmd.OpenQuery "查询FF4"
+    DoCmd.OpenQuery "查询FF5"
+    DoCmd.OpenQuery "查询FF6"
+    DoCmd.OpenQuery "查询FF7"
+    DoCmd.OpenQuery "查询FF8"
+    DoCmd.OpenQuery "查询FF9"
+    DoCmd.OpenQuery "查询FF10"
+    DoCmd.OpenQuery "查询FF"
+    
+    strSql="drop table tableFF1"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableFF2"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableFF3"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableFF4"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableFF5"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableFF6"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableFF7"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableFF8"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableFF9"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableFF10"
+    DoCmd.RunSQL strSql
+    
+    DoCmd.OpenQuery "查询GG1"
+    DoCmd.OpenQuery "查询GG2"
+    DoCmd.OpenQuery "查询GG3"
+    DoCmd.OpenQuery "查询GG4"
+    DoCmd.OpenQuery "查询GG5"
+    DoCmd.OpenQuery "查询GG6"
+    DoCmd.OpenQuery "查询GG7"
+    DoCmd.OpenQuery "查询GG8"
+    DoCmd.OpenQuery "查询GG9"
+    DoCmd.OpenQuery "查询GG10"
+    DoCmd.OpenQuery "查询GG"
+    
+    strSql="drop table tableGG1"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableGG2"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableGG3"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableGG4"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableGG5"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableGG6"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableGG7"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableGG8"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableGG9"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableGG10"
+    DoCmd.RunSQL strSql
+    
+    DoCmd.OpenQuery "查询结果"
+    DoCmd.OpenQuery "更新查询"
+    
+    strSql = "drop table Sheet1"
+    DoCmd.RunSQL strSql
+    strSql="drop table child1"
+    DoCmd.RunSQL strSql
+    strSql="drop table child2"
+    DoCmd.RunSQL strSql
+    strSql="drop table child3"
+    DoCmd.RunSQL strSql
+    strSql="drop table child4"
+    DoCmd.RunSQL strSql
+    strSql="drop table child5"
+    DoCmd.RunSQL strSql
+    strSql="drop table child6"
+    DoCmd.RunSQL strSql
+    strSql="drop table child7"
+    DoCmd.RunSQL strSql
+    strSql="drop table child8"
+    DoCmd.RunSQL strSql
+    strSql="drop table child9"
+    DoCmd.RunSQL strSql
+    strSql="drop table child10"
+    DoCmd.RunSQL strSql
+    
+    strSql="drop table tableAA"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableBB"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableCC"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableDD"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableEE"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableFF"
+    DoCmd.RunSQL strSql
+    strSql="drop table tableGG"
+    DoCmd.RunSQL strSql
+        
+    DoCmd.SetWarnings True
+    MsgBox "---------程序执行完毕，请直接导出新表Sheet3------------"
+    
+End Sub

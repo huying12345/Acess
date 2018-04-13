@@ -1,0 +1,11 @@
+UPDATE Sheet3 SET 管制品 = switch(
+            CAS索引='手工检索','手工检索',
+            CAS索引='NA','NULL',
+), 危险性质 = switch(
+            CAS索引='手工检索','手工检索',
+            CAS索引='NA','非危险品',
+), UN = switch(
+            CAS索引='手工检索','手工检索',
+            CAS索引='NA','NULL',
+)
+WHERE CAS索引 ='手工确认' or CAS索引 ='手工检索' or CAS索引 ='NA';

@@ -1,0 +1,14 @@
+SELECT * INTO tableGG
+FROM (select
+IIf(危险性质 in ('非危险品','其它杂项危险品') and (储存条件 in (select 储存条件 from 储存条件 where 货品属性1='非危险品')),'非危险品',
+IIf(危险性质 in ('非危险品','其它杂项危险品') and (储存条件 in (select 储存条件 from 储存条件 where 货品属性1='冷藏品')),'冷藏品',
+IIf(危险性质 in ('非危险品','其它杂项危险品') and (储存条件 in (select 储存条件 from 储存条件 where 货品属性1='冷冻品')),'冷冻品',
+IIf(危险性质 in ('非危险品','其它杂项危险品') and (储存条件 not in (select 储存条件 from 储存条件)),'手工','手工')))) as a,*  from Sheet1
+where  ID not in(select ID from tableAA)
+and ID not in(select ID from tableBB)
+and ID not in(select ID from tableCC)
+and ID not in(select ID from tableDD)
+and ID not in(select ID from tableEE)
+and ID not in(select ID from tableFF)
+and 危险性质 in('非危险品','其它杂项危险品')
+and 储存条件 in(select 储存条件 from 储存条件)) ORDER BY ID;

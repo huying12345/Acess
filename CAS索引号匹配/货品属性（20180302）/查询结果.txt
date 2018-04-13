@@ -1,0 +1,19 @@
+SELECT a as ªı∆∑ Ù–‘,* INTO Sheet3
+FROM (select * from tableAA
+union
+select * from tableBB
+union 
+select * from tableCC
+union 
+select * from tableDD
+UNION 
+select * from tableEE
+union
+select * from tableFF
+union 
+select * from tableGG
+UNION 
+select * from tableHH
+union
+select * from tableII
+)

@@ -1,0 +1,34 @@
+SELECT * INTO tableEE
+FROM (select
+IIf(存货名称 like '*硝酸溶液*'
+or 英文名称 like '*硝酸溶液*'
+or 英文名称 like '*硝酸溶液*'
+or 规格型号 like '*硝酸溶液*'
+or CAS索引 like '*硝酸溶液*'
+or CAS索引 like '*硝酸溶液*'
+or 存货名称 like '*nitric acid solution*'
+or 存货名称 like '*salpeter solution*'
+or 英文名称 like '*nitric acid solution*'
+or 英文名称 like '*salpeter solution*'
+or 规格型号 like '*nitric acid solution*'
+or 规格型号 like '*salpeter solution*'
+or CAS索引 like '*nitric acid solution*'
+or CAS索引 like '*salpeter solution*','硝酸','手工')as a,* from Sheet1
+where ID not in(select ID from tableAA)
+and ID not in(select ID from tableBB)
+and ID not in(select ID from tableCC)
+and ID not in(select ID from tableDD)
+and 存货名称 like '*硝酸溶液*'
+or 英文名称 like '*硝酸溶液*'
+or 英文名称 like '*硝酸溶液*'
+or 规格型号 like '*硝酸溶液*'
+or CAS索引 like '*硝酸溶液*'
+or CAS索引 like '*硝酸溶液*'
+or 存货名称 like '*nitric acid solution*'
+or 存货名称 like '*salpeter solution*'
+or 英文名称 like '*nitric acid solution*'
+or 英文名称 like '*salpeter solution*'
+or 规格型号 like '*nitric acid solution*'
+or 规格型号 like '*salpeter solution*'
+or CAS索引 like '*nitric acid solution*'
+or CAS索引 like '*salpeter solution*') ORDER BY ID;
